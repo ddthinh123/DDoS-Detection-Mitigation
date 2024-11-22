@@ -45,15 +45,14 @@ Khi module phát hiện tấn công DDoS, hệ thống sẽ tự động thực 
 Để thay đổi các biện pháp ngăn chặn, bạn có thể chỉnh sửa hàm block_ip() trong mitigation_module.py.
 
 Cấu trúc dự án
+DDoS-Detection-Mitigation/
+    monitoring_module.py        # Module giám sát mạng
+    detection_module.py         # Module phát hiện tấn công DDoS
+    mitigation_module.py        # Module ngăn chặn tấn công DDoS
+    RF.py                       # Huấn luyện mô hình học máy
+    model.pkl                   # Mô hình đã huấn luyện
+    README.md                   # Tài liệu hướng dẫn sử dụng
 
-### DDoS-Detection-Mitigation/
- ## monitoring_module.py       # Module giám sát mạng
- ## detection_module.py        # Module phát hiện tấn công DDoS
- ## mitigation_module.py       # Module ngăn chặn tấn công DDoS
- ## RF.py             # Huấn luyện mô hình học máy
- ## model.pkl                  # Mô hình đã huấn luyện
- ## README.md                  # Tài liệu hướng dẫn sử dụng
-Chạy thử hệ thống
 Huấn luyện mô hình:
 
 python RF.py
