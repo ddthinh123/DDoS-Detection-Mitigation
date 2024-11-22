@@ -1,5 +1,5 @@
-DDoS Detection and Mitigation System
-Mô tả dự án
+## DDoS Detection and Mitigation System
+## Mô tả dự án
 Dự án này phát triển một hệ thống phát hiện và ngăn chặn tấn công DDoS (Distributed Denial of Service) sử dụng các mô hình học máy. Hệ thống sẽ giám sát mạng trong thời gian thực, phát hiện các tấn công DDoS và tự động thực thi các biện pháp bảo vệ như chặn IP của các nguồn tấn công.
 
 Các module chính
