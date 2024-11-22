@@ -17,8 +17,6 @@ Khi phát hiện tấn công DDoS, thực thi các biện pháp ngăn chặn, v�
 Các bước cài đặt và sử dụng
 1. Cài đặt các thư viện phụ thuộc
 Trước khi bắt đầu, bạn cần cài đặt các thư viện cần thiết:
-
-pip install -r requirements.txt
 scikit-learn
 numpy
 pandas
@@ -31,47 +29,85 @@ You can download the dataset from the following link:
 [Download Dataset](https://drive.google.com/file/d/1amqNCTs9boU6g9y57p8O2q7GeTIK35P9/view?usp=drive_link)
 
 
-3. Huấn luyện mô hình
-Để huấn luyện mô hình học máy, bạn có thể sử dụng mã trong file train_model.py. Sau khi huấn luyện, mô hình sẽ được lưu dưới dạng file model.pkl.
-python RF.py
-4. Cấu hình hệ thống giám sát
-Sau khi huấn luyện mô hình, bạn có thể bắt đầu giám sát mạng bằng cách chạy module giám sát:
-python monitoring_module.py
-Module giám sát sẽ thu thập gói tin từ mạng, trích xuất các đặc trưng và gửi chúng vào mô hình học máy để phân loại. Nếu mô hình phát hiện tấn công DDoS, nó sẽ kích hoạt module ngăn chặn.
-
-5. Cấu hình hệ thống ngăn chặn
-Khi module phát hiện tấn công DDoS, hệ thống sẽ tự động thực thi các biện pháp ngăn chặn. Điều này được thực hiện trong module ngăn chặn (mitigation_module.py). Mặc định, hệ thống sử dụng iptables để chặn IP của các nguồn tấn công.
-
-Để thay đổi các biện pháp ngăn chặn, bạn có thể chỉnh sửa hàm block_ip() trong mitigation_module.py.
-
-Cấu trúc dự án
-DDoS-Detection-Mitigation/
-    monitoring_module.py        # Module giám sát mạng
-    detection_module.py         # Module phát hiện tấn công DDoS
-    mitigation_module.py        # Module ngăn chặn tấn công DDoS
-    RF.py                       # Huấn luyện mô hình học máy
-    model.pkl                   # Mô hình đã huấn luyện
-    README.md                   # Tài liệu hướng dẫn sử dụng
-
-Huấn luyện mô hình:
-
-python RF.py
-Sau khi huấn luyện xong, chạy module giám sát:
-
-python monitoring_module.py
-Nếu tấn công DDoS được phát hiện, hệ thống sẽ tự động thực hiện biện pháp ngăn chặn (chặn IP).
-
-Ghi chú
-Đảm bảo rằng bạn có quyền truy cập root hoặc quyền quản trị để thực thi các lệnh ngăn chặn (ví dụ: iptables).
-Hệ thống giám sát sẽ chạy liên tục và tự động phát hiện các tấn công DDoS trong thời gian thực.
-Để tối ưu hiệu suất, bạn có thể điều chỉnh các tham số trong mô hình học máy và cấu hình module giám sát sao cho phù hợp với hệ thống của bạn.
 Tạo mô hình học máy
-Mô hình học máy trong dự án sử dụng các đặc trưng của gói tin mạng từ bộ dữ liệu như sau:
+Mô hình học máy trong dự án sử dụng các đặc trưng của gói tin mạng từ bộ dữ liệu, bao gồm:
 
 Destination Port
 Flow Duration
 Total Fwd Packets
 Total Backward Packets
-... (Danh sách đầy đủ các đặc trưng có trong bộ dữ liệu)
+Total Length of Fwd Packets
+Total Length of Bwd Packets
+Fwd Packet Length Max
+Fwd Packet Length Min
+Fwd Packet Length Mean
+Fwd Packet Length Std
+Bwd Packet Length Max
+Bwd Packet Length Min
+Bwd Packet Length Mean
+Bwd Packet Length Std
+Flow Bytes/s
+Flow Packets/s
+Flow IAT Mean
+Flow IAT Std
+Flow IAT Max
+Flow IAT Min
+Fwd IAT Total
+Fwd IAT Mean
+Fwd IAT Std
+Fwd IAT Max
+Fwd IAT Min
+Bwd IAT Total
+Bwd IAT Mean
+Bwd IAT Std
+Bwd IAT Max
+Bwd IAT Min
+Fwd PSH Flags
+Bwd PSH Flags
+Fwd URG Flags
+Bwd URG Flags
+Fwd Header Length
+Bwd Header Length
+Fwd Packets/s
+Bwd Packets/s
+Min Packet Length
+Max Packet Length
+Packet Length Mean
+Packet Length Std
+Packet Length Variance
+FIN Flag Count
+SYN Flag Count
+RST Flag Count
+PSH Flag Count
+ACK Flag Count
+URG Flag Count
+CWE Flag Count
+ECE Flag Count
+Down/Up Ratio
+Average Packet Size
+Avg Fwd Segment Size
+Avg Bwd Segment Size
+Fwd Avg Bytes/Bulk
+Fwd Avg Packets/Bulk
+Bwd Avg Bytes/Bulk
+Bwd Avg Packets/Bulk
+Subflow Fwd Packets
+Subflow Fwd Bytes
+Subflow Bwd Packets
+Subflow Bwd Bytes
+Init_Win_bytes_forward
+Init_Win_bytes_backward
+act_data_pkt_fwd
+min_seg_size_forward
+Active Mean
+Active Std
+Active Max
+Active Min
+Idle Mean
+Idle Std
+Idle Max
+Idle Min
 Các đặc trưng này sẽ được sử dụng để huấn luyện mô hình phân loại, giúp phân biệt tấn công DDoS với các lưu lượng mạng bình thường.
+
+
 
