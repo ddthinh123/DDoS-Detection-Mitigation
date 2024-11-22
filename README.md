@@ -47,13 +47,12 @@ Khi module phát hiện tấn công DDoS, hệ thống sẽ tự động thực 
 Cấu trúc dự án
 
 DDoS-Detection-Mitigation/
-│
-├── monitoring_module.py       # Module giám sát mạng
-├── detection_module.py        # Module phát hiện tấn công DDoS
-├── mitigation_module.py       # Module ngăn chặn tấn công DDoS
-├── RF.py             # Huấn luyện mô hình học máy
-├── model.pkl                  # Mô hình đã huấn luyện
-└── README.md                  # Tài liệu hướng dẫn sử dụng
+ monitoring_module.py       # Module giám sát mạng
+ detection_module.py        # Module phát hiện tấn công DDoS
+ mitigation_module.py       # Module ngăn chặn tấn công DDoS
+ RF.py             # Huấn luyện mô hình học máy
+ model.pkl                  # Mô hình đã huấn luyện
+ README.md                  # Tài liệu hướng dẫn sử dụng
 Chạy thử hệ thống
 Huấn luyện mô hình:
 
